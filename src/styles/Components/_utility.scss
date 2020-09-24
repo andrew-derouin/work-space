@@ -1,0 +1,28 @@
+.d-none {
+    display: none;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-1 {
+    opacity: 1;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.to-the {
+    position: relative;
+    transition: transform 2s;
+}
+
+.to-the-right {
+    transform: translateX(1500px);
+}
+
+.to-the-right {
+    transform: translateX(-1500px);
+}

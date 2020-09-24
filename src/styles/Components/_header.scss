@@ -1,0 +1,10 @@
+.header-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 70px;
+    background-color: var(--header-bg-color);
+    color: var(--header-color);
+}

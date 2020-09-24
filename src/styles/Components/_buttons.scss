@@ -1,0 +1,44 @@
+.btn-case {
+    width: 100%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+}
+
+.btn {
+    min-width: 160px;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    text-transform: capitalize;
+    font-style: bold;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $btn-primary-bg-color;
+    cursor: pointer;
+
+    transition: background-color 1s, color 0.5s;
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn-primary {
+    background-color: $btn-primary-bg-color;
+    color: $btn-primary-color;
+
+    &:hover {
+        background-color: $btn-primary-color;
+        color: $btn-primary-bg-color;
+    }
+}
+
+.btn-active {
+    color: var(--active-btn-color);
+    background-color: var(--active-btn-bg-color);
+
+    &:hover {
+        background-color: var(--active-btn-color);
+        color: var(--active-btn-bg-color);
+    }
+}

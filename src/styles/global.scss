@@ -1,0 +1,12 @@
+// Variables
+@import "./dynamicVariables.scss";
+@import "./variables.scss";
+
+// Atomic Styling
+@import "./Components/global.scss";
+@import "./Components/buttons.scss";
+
+// Component Styling
+@import "./Components/header.scss";
+@import "./Components/main.scss";
+@import "./Components/footer.scss";

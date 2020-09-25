@@ -1,0 +1,18 @@
+
+.item-element {
+  transition: transform 0.8s;
+}
+
+.transform-right {
+  position: relative;
+  transform: translateX(100%);
+}
+
+.transform-left {
+  position: relative;
+  transform: translateX(-100%);
+}
+
+.no-transition {
+  transition: none;
+}

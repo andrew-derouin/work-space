@@ -13,7 +13,7 @@ declare global {
 let v = new Vue({
     el: "#app",
     template: `
-    <div class="root-element">
+    <div id="root">
         <header-component />
         <main-component />
         <footer-component />

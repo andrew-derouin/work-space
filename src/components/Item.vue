@@ -34,6 +34,7 @@ export default Vue.extend({
     props: ['data', 'index', 'position'],
     data() {
         return {
+            element: document.getElementById('root'),
             listIndex: this.index,
             dataList: this.data,
             relativePosition: this.position,
@@ -54,8 +55,32 @@ export default Vue.extend({
                 newIndex = 0;
             }
 
-            this.listIndex = newIndex;
-            this.itemData = this.dataList[newIndex];
+            this.animateChange(change);
+            window.$App.setActiveFor(1100);
+            setTimeout(() => {
+                this.listIndex = newIndex;
+                this.itemData = this.dataList[newIndex];
+            }, 1000);
+        },
+        animateChange(change: number): void {
+            if (this.element) {
+                if (change < 0) {
+                    this.element.classList.add('transform-right');
+                } else {
+                    this.element.classList.add('transform-left');
+                }
+                setTimeout(() => {
+                    if (this.element) {
+                        this.element.classList.add('no-transition');
+                        this.element.classList.remove('transform-right', 'transform-left');
+                        setTimeout(() => {
+                            if (this.element) {
+                                this.element.classList.remove('no-transition');
+                            }
+                        }, 100);
+                    }
+                }, 1000);
+            }
         },
         setColors: function(): void {
             if (this.relativePosition === 0) {
@@ -71,6 +96,9 @@ export default Vue.extend({
 
         window.addEventListener('ArrowRight', () => { this.changeItem(1) });
         window.addEventListener('ArrowLeft', () => { this.changeItem(-1) });
+    },
+    mounted() {
+        this.element = document.getElementsByClassName('item-element')[this.position + 2] as HTMLElement;
     },
     watch: {
         itemData: function (val) {

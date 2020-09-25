@@ -2,9 +2,11 @@
 <template>
     <div class="main-element">
         <div class="item-collection">
+            <item-component v-show="showWings" :data="mainData.dataList" :index="mainData.dataList.length -2" :position="-2" />
             <item-component v-show="showWings" :data="mainData.dataList" :index="mainData.dataList.length -1" :position="-1" />
             <item-component :data="mainData.dataList" :index="listIndex" :position="0" />
             <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 1" :position="1" />
+            <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 2" :position="2" />
         </div>
     </div>
 </template>

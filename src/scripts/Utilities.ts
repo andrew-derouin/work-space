@@ -4,7 +4,7 @@ export function setCssVar(varName: string, value: string): void {
 }
 
 export function onResize(callback: Function): void {
-    document.addEventListener('resize', callback());
+   debounceEventListener(100, 'resize', callback);
 }
 
 export function debounceEventListener(delay: number, listener: string, callback: Function) {

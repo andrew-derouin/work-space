@@ -1,7 +1,11 @@
 <!-- src/components/Main.vue -->
 <template>
     <div class="main-element">
-        <item-component :data="mainData.dataList" :index="listIndex" />
+        <div class="item-collection">
+            <item-component v-show="showWings" :data="mainData.dataList" :index="mainData.dataList.length -1" :position="-1" />
+            <item-component :data="mainData.dataList" :index="listIndex" :position="0" />
+            <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 1" :position="1" />
+        </div>
     </div>
 </template>
 
@@ -17,13 +21,24 @@ export default Vue.extend({
         return {
             mainData: window.$App.MainData,
             listIndex: 0,
-            elementHeight: 0
+            elementHeight: '0',
+            showWings: false
         }
     },
     methods: {
         setHeight: function(): void {
-            this.elementHeight = window.innerHeight - 140;
-            ut.setCssVar('--main-element-height', this.elementHeight.toString() + 'px');
+            if (window.innerWidth < 700) {
+                this.showWings = false;
+                this.elementHeight = '100%';
+            } else {
+                const header: HTMLElement = document.getElementsByClassName('header-element')[0] as HTMLElement;
+                const footer: HTMLElement = document.getElementsByClassName('footer-element')[0] as HTMLElement;
+                const heightAround: number = header.offsetHeight + footer.offsetHeight;
+
+                this.elementHeight = (window.innerHeight - heightAround).toString() + 'px';
+                this.showWings = true;
+            }
+            ut.setCssVar('--main-element-height', this.elementHeight);
         }
     },
     watch: {

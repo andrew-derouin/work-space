@@ -38,6 +38,10 @@ export class Controls {
 
     readWheel() {
         ut.debounceEventListener(1000, 'wheel', (e: WheelEvent) => {
+            if (e.deltaY !== 0) {
+                return;
+            }
+
             if (e.deltaX > 0) {
                 var event = new Event('ArrowRight');
                 window.dispatchEvent(event);

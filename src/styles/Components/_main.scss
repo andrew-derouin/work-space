@@ -9,9 +9,12 @@
 .item-collection {
     display: flex;
     justify-content: center;
-    width: 160%;
     text-align: center;
-    transform: translateX(-20%);
+
+    @media (min-width: 700px) {
+        width: 160%;
+        transform: translateX(-20%);
+    }
 }
 
 .item-element {
@@ -21,7 +24,6 @@
 }
 
 .item-case {
-    max-width: 800px;
     padding: 2rem;
     margin-top: 2rem;
     display: flex;
@@ -30,6 +32,11 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+
+    @media (min-width: 700px) {
+        max-width: 1000px;
+        min-width: 700px;
+    }
 
     img {
         width: 100%;

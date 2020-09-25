@@ -1,13 +1,13 @@
-import { Utilities } from "./scripts/Utilities";
+import { Controls } from "./scripts/Controls";
 import { ManageData } from "./scripts/ManageData";
 
 
 export class App {
-    Utilities: Utilities;
     MainData: ManageData;
+    Controls: Controls;
 
     constructor() {
-        this.Utilities = new Utilities();
         this.MainData = new ManageData();
+        this.Controls = new Controls();
     }
 }

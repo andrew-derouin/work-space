@@ -1,6 +1,6 @@
 <!-- src/components/Main.vue -->
 <template>
-    <div class="main-element" v-bind:style="{height: elementHeight + 'px'}">
+    <div class="main-element">
         <item-component :data="mainData.dataList" :index="listIndex" />
     </div>
 </template>
@@ -9,6 +9,7 @@
 import Vue from "vue";
 import ItemComponent from "./Item.vue";
 import { ManageData } from "../scripts/ManageData";
+import * as ut from "../scripts/Utilities";
 
 export default Vue.extend({
     props: [],
@@ -20,13 +21,17 @@ export default Vue.extend({
         }
     },
     methods: {
-        setHeight: function() {
+        setHeight: function(): void {
             this.elementHeight = window.innerHeight - 140;
-            document.documentElement.style.setProperty('--main-element-height', this.elementHeight.toString());
+            ut.setCssVar('--main-element-height', this.elementHeight.toString() + 'px');
         }
+    },
+    watch: {
+        
     },
     mounted: function () {
        this.setHeight();
+       ut.onResize(this.setHeight);
     },
     components: {
         ItemComponent

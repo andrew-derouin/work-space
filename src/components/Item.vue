@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import * as ut from "../scripts/Utilities";
 
 export default Vue.extend({
     props: ['data', 'index'],
@@ -39,7 +40,7 @@ export default Vue.extend({
         }
     },
     methods: {
-        changeItem: function (change: number) {
+        changeItem: function (change: number): void {
             let newIndex = this.listIndex;
             let lastIndex = this.dataList.length - 1;
 
@@ -53,6 +54,23 @@ export default Vue.extend({
 
             this.listIndex = newIndex;
             this.itemData = this.dataList[newIndex];
+        },
+        setColors: function(): void {
+            ut.setCssVar('--header-bg-color', this.itemData.primaryColor);
+            ut.setCssVar('--main-bg-color', this.itemData.secondaryColor);
+            ut.setCssVar('--footer-bg-color', this.itemData.primaryColor);
+            ut.setCssVar('--active-btn-bg-color', this.itemData.primaryColor);
+        }
+    },
+    created() {
+        this.setColors();
+
+        window.addEventListener('ArrowRight', () => { this.changeItem(1) });
+        window.addEventListener('ArrowLeft', () => { this.changeItem(-1) });
+    },
+    watch: {
+        itemData: function (val) {
+            this.setColors();
         }
     }
 });

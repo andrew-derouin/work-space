@@ -4,6 +4,12 @@
     display: flex;
     justify-content: center;
     align-self: flex-end;
+    opacity: 0;
+    transition: opacity 1s;
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .btn {

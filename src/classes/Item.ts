@@ -10,6 +10,8 @@ export class Item {
     type: string;
     imageTypes: Array<string>
     images: Array<string>;
+    primaryColor: string;
+    secondaryColor: string;
 
     constructor(jsonItem: any) {
         this.jsonItem = jsonItem;
@@ -19,6 +21,8 @@ export class Item {
         this.type = 'standard';
         this.imageTypes = ImageTypes[this.type];
         this.images = this.createImagePaths();
+        this.primaryColor = jsonItem.primaryColor;
+        this.secondaryColor = jsonItem.secondaryColor;
     }
 
     createImagePaths(): Array<string> {

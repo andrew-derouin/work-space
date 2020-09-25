@@ -7,4 +7,6 @@
     height: 70px;
     background-color: var(--header-bg-color);
     color: var(--header-color);
+
+    transition: background-color 1s;
 }

@@ -24,7 +24,14 @@ export const items = [
         "id": "actraiser",
         "name": "Actraiser",
         "description": "ActRaiser is a 1990 platform and city-building simulation game for the Super Nintendo Entertainment System developed by Quintet and published by Enix, combining traditional side-scrolling platforming with urban planning god game sections. A sequel, ActRaiser 2, was released for the Super NES in 1993. In 2007, ActRaiser became available on the Wii's Virtual Console download service in Europe, North America, and Japan. A version of the game was also released for European mobile phones in 2004.",
-        "primaryColor": "rgba(0, 71, 27, 1)",
-        "secondaryColor": "rgba(29, 56, 205, 1)"
+        "primaryColor": "rgba(29, 56, 205, 1)",
+        "secondaryColor": "rgba(234, 182, 118, 1)"
+    },
+    {
+        "id": "earthbound",
+        "name": "Earthbound",
+        "description": "EarthBound is a role-playing video game developed by Ape Inc. and HAL Laboratory and published by Nintendo for the Super Nintendo Entertainment System. The second entry in the Mother series, it was first released in Japan in August 1994, and in North America in June 1995. As Ness and his party of four, the player travels the world to collect melodies from eight Sanctuaries in order to defeat the evil alien force Giygas.",
+        "primaryColor": "rgba(0, 0, 0, 1)",
+        "secondaryColor": "rgba(87, 162, 52, 1)"
     }
 ];

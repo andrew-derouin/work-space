@@ -1,12 +1,15 @@
 <!-- src/components/Main.vue -->
 <template>
     <div class="main-element">
-        <div class="item-collection">
+        <div v-show="showItems" class="item-collection">
             <item-component v-show="showWings" :data="mainData.dataList" :index="mainData.dataList.length -2" :position="-2" />
             <item-component v-show="showWings" :data="mainData.dataList" :index="mainData.dataList.length -1" :position="-1" />
             <item-component :data="mainData.dataList" :index="listIndex" :position="0" />
             <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 1" :position="1" />
             <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 2" :position="2" />
+        </div>
+        <div v-show="showAbout" class="about-collection">
+            <about-component />
         </div>
         <div class="main-overlay" v-bind:class="{ 'active': showOverlay }">
             <div class="white-line"></div>
@@ -19,6 +22,7 @@
 <script lang="ts">
 import Vue from "vue";
 import ItemComponent from "./Item.vue";
+import AboutComponent from "./About.vue";
 import { ManageData } from "../scripts/ManageData";
 import * as ut from "../scripts/Utilities";
 
@@ -31,6 +35,8 @@ export default Vue.extend({
             elementHeight: '0',
             showWings: false,
             showOverlay: false,
+            showItems: true,
+            showAbout: false,
             mainItem: window.$App.mainItem
         }
     },
@@ -79,7 +85,8 @@ export default Vue.extend({
        ut.onResize(this.setHeight);
     },
     components: {
-        ItemComponent
+        ItemComponent,
+        AboutComponent
     }
 });
 </script>

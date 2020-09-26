@@ -1,14 +1,18 @@
 .footer-element {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     transition: background-color 1s;
     width: 100%;
     height: 60px;
-    background-color: var(--footer-bg-color);
+    background: linear-gradient(to left, #000 30%, var(--footer-bg-color));
+
+    @media (min-width: 700px) {
+        justify-content: flex-end;
+    }
 }
 
-.icon-row {
+.icon-row-footer {
     display: flex;
 }
 

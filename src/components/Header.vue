@@ -1,7 +1,15 @@
 <!-- src/components/Main.vue -->
 <template>
     <div class="header-element">
-        <div class="headline text-center"><h1>Work Space</h1></div>
+        <div class="icon-row-navigation">
+            <div class="icon icon-bitbucket">
+                <img v-bind:src="'./src/icons/about-icon.svg'" />
+            </div>
+            <div class="icon icon-linkedin">
+                <img v-bind:src="'./src/icons/slideshow-icon.svg'" />
+            </div>
+        </div>
+        <div class="header-headline text-center"><h1>Work Space</h1></div>
     </div>
 </template>
 

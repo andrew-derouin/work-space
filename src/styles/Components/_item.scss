@@ -30,6 +30,10 @@
         max-width: 1000px;
     }
 
+    img, .item-info {
+        border: 3px solid var(--active-btn-bg-color);
+    }
+
     img {
         width: 100%;
     }

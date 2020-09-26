@@ -4,6 +4,7 @@ export class Controls {
     constructor() {
         this.readDirections();
         this.readWheel();
+        this.readTouch();
     }
 
     readDirections() {
@@ -50,8 +51,14 @@ export class Controls {
     }
 
     readTouch() {
-        window.addEventListener('touchend', function (e) {
-
+        ut.debounceEventListener(200, 'touchend', (e: TouchEvent) => {
+            if (!window.$App.isActive) {
+                if (e.changedTouches[0].clientX < 0) {
+                    ut.trigger('ArrowRight');
+                } else {
+                    ut.trigger('ArrowLeft');
+                }
+            }
         });
     }
 }

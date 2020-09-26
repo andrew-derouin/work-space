@@ -11,6 +11,7 @@
 
 .main-overlay {
     transition: background-color 1s, color 0.5s;
+    display: none;
 
     .white-line {
         transition: width 0.5s;

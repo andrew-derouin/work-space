@@ -41,6 +41,11 @@
         padding: 1em;
         background-color: rgba(0,0,0, 0.6);
         color: $color-light;
+
+        p {
+            text-align: left;
+            text-indent: 8%;
+        }
     }
     
     .screenshot-case {

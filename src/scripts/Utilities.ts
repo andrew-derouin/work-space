@@ -4,7 +4,7 @@ export function setCssVar(varName: string, value: string): void {
 }
 
 export function onResize(callback: Function): void {
-   debounceEventListener(100, 'resize', callback);
+   debounceEventListener(200, 'resize', callback);
 }
 
 export function debounceEventListener(delay: number, listener: string, callback: Function) {
@@ -21,4 +21,9 @@ export function debounceEventListener(delay: number, listener: string, callback:
             wait = false;
         }, delay);
     });
+}
+
+export function trigger(eventName: string) {
+    var event = new Event(eventName);
+    window.dispatchEvent(event);
 }

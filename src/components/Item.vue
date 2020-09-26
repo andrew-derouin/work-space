@@ -19,9 +19,9 @@
                 </div>
             </div>
         </div>
-        <div class="btn-case" v-bind:class="{ 'opacity-0': buttonClass }">
-            <button class="btn btn-active" v-on:click="changeItem(1)">Next Item</button>
-            <button class="btn btn-active" v-on:click="changeItem(-1)">Previous Item</button>
+        <div class="btn-case" v-bind:class="{ 'opacity-0' : buttonClass }">
+            <button class="btn btn-active" v-on:click="trigger('ArrowRight');">Next Item</button>
+            <button class="btn btn-active" v-on:click="trigger('ArrowLeft');">Previous Item</button>
         </div>
     </div>
 </template>
@@ -39,7 +39,8 @@ export default Vue.extend({
             dataList: this.data,
             relativePosition: this.position,
             itemData: this.data[this.index],
-            buttonClass: this.position !== 0
+            buttonClass: this.position !== 0,
+            trigger: (event: string) => {ut.trigger(event)}
         }
     },
     methods: {
@@ -54,6 +55,12 @@ export default Vue.extend({
             } else if (newIndex > lastIndex) {
                 newIndex = 0;
             }
+            
+            if (this.relativePosition === 0) {
+                window.$App.setMainItem(this.dataList[newIndex]);
+            }
+
+            ut.trigger('show-overlay');
 
             this.animateChange(change);
             window.$App.setActiveFor(1100);
@@ -81,29 +88,18 @@ export default Vue.extend({
                     }
                 }, 1000);
             }
-        },
-        setColors: function(): void {
-            if (this.relativePosition === 0) {
-                ut.setCssVar('--header-bg-color', this.itemData.primaryColor);
-                ut.setCssVar('--main-bg-color', this.itemData.secondaryColor);
-                ut.setCssVar('--footer-bg-color', this.itemData.primaryColor);
-                ut.setCssVar('--active-btn-bg-color', this.itemData.primaryColor);
-            }
         }
     },
     created() {
-        this.setColors();
-
         window.addEventListener('ArrowRight', () => { this.changeItem(1) });
         window.addEventListener('ArrowLeft', () => { this.changeItem(-1) });
     },
     mounted() {
-        this.element = document.getElementsByClassName('item-element')[this.position + 2] as HTMLElement;
+
+        this.element = document.getElementsByClassName('item-element')[this.relativePosition + 2] as HTMLElement;
     },
     watch: {
-        itemData: function (val) {
-            this.setColors();
-        }
+
     }
 });
 </script>

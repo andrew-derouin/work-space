@@ -8,6 +8,11 @@
             <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 1" :position="1" />
             <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 2" :position="2" />
         </div>
+        <div class="main-overlay" v-bind:class="{ 'active': showOverlay }">
+            <div class="white-line"></div>
+            <div>{{ mainItem.name }}</div>
+            <div class="white-line"></div>
+        </div>
     </div>
 </template>
 
@@ -24,7 +29,9 @@ export default Vue.extend({
             mainData: window.$App.MainData,
             listIndex: 0,
             elementHeight: '0',
-            showWings: false
+            showWings: false,
+            showOverlay: false,
+            mainItem: window.$App.mainItem
         }
     },
     methods: {
@@ -41,10 +48,31 @@ export default Vue.extend({
                 this.showWings = true;
             }
             ut.setCssVar('--main-element-height', this.elementHeight);
+        },
+        setColors: function(): void {
+            ut.setCssVar('--header-bg-color', this.mainItem.primaryColor);
+            ut.setCssVar('--main-bg-color', this.mainItem.secondaryColor);
+            ut.setCssVar('--footer-bg-color', this.mainItem.primaryColor);
+            ut.setCssVar('--active-btn-bg-color', this.mainItem.primaryColor);
         }
     },
     watch: {
-        
+
+    },
+    created: function () {
+        this.setColors();
+
+        window.addEventListener('main-item-change', () => {
+            this.mainItem = window.$App.mainItem;
+            this.setColors();
+        });
+
+        ut.debounceEventListener(1000, 'show-overlay', () => {
+            this.showOverlay = true;
+            setTimeout(() => {
+                this.showOverlay = false;
+            }, 1100);
+        });
     },
     mounted: function () {
        this.setHeight();

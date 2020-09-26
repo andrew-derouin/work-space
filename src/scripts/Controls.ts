@@ -10,27 +10,23 @@ export class Controls {
         document.onkeyup = function(e) {
             if (!window.$App.isActive) {
                 switch(e.key) {
-                    case "ArrowLeft": // left
-                    var event = new Event('ArrowLeft');
-                    window.dispatchEvent(event);
+                    case "ArrowLeft":
+                    ut.trigger('ArrowLeft');
                     break;
             
-                    case "ArrowUp": // up
-                    var event = new Event('ArrowUp');
-                    window.dispatchEvent(event);
+                    case "ArrowUp":
+                    ut.trigger('ArrowUp');
                     break;
             
-                    case "ArrowRight": // right
-                    var event = new Event('ArrowRight');
-                    window.dispatchEvent(event);
+                    case "ArrowRight":
+                    ut.trigger('ArrowRight');
                     break;
             
-                    case "ArrowDown": // down
-                    var event = new Event('ArrowDown');
-                    window.dispatchEvent(event);
+                    case "ArrowDown":
+                    ut.trigger('ArrowDown');
                     break;
             
-                    default: return; // exit this handler for other keys
+                    default: return;
                 }
                 e.preventDefault();
             }
@@ -45,11 +41,9 @@ export class Controls {
                 }
 
                 if (e.deltaX > 0) {
-                    var event = new Event('ArrowRight');
-                    window.dispatchEvent(event);
+                    ut.trigger('ArrowRight');
                 } else {
-                    var event = new Event('ArrowLeft');
-                    window.dispatchEvent(event);
+                    ut.trigger('ArrowLeft');
                 }
             }
         });

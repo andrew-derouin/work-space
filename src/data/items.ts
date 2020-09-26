@@ -24,7 +24,7 @@ export const items = [
         "id": "actraiser",
         "name": "Actraiser",
         "description": "ActRaiser is a 1990 platform and city-building simulation game for the Super Nintendo Entertainment System developed by Quintet and published by Enix, combining traditional side-scrolling platforming with urban planning god game sections. A sequel, ActRaiser 2, was released for the Super NES in 1993. In 2007, ActRaiser became available on the Wii's Virtual Console download service in Europe, North America, and Japan. A version of the game was also released for European mobile phones in 2004.",
-        "primaryColor": "rgba(69, 149, 29, 1)",
+        "primaryColor": "rgba(0, 71, 27, 1)",
         "secondaryColor": "rgba(29, 56, 205, 1)"
     }
 ];

@@ -2,13 +2,9 @@
 <template>
     <div class="item-element">
         <div class="item-case" v-bind:style="{ backgroundImage: 'url(' + itemData.images[0] + ')' }">
-            <div class="info">
-                <div class="title">
-                    {{itemData.name}}
-                </div>
-                <div class="description">
-                    {{itemData.description}}
-                </div>
+            <div class="item-info">
+                <h2>{{ itemData.name }}</h2>
+                <p>{{ itemData.description }}</p>
             </div>
             <div class="screenshot-case">
                 <div class="screenshot-element">

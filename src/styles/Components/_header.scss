@@ -1,13 +1,22 @@
 .header-element {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     transition: background-color 1s;
     width: 100%;
     height: 60px;
-
-    background: linear-gradient(to right, #000 60%, var(--header-bg-color));
+    background-color: var(--header-bg-color);
     color: var(--header-color);
+}
+
+.header-overlay {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 75%;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 50% 100%, 0 100%);
+    background-color: black;
 }
 
 .header-headline {
@@ -16,6 +25,8 @@
 }
 
 .icon-row-navigation {
+    position: relative;
     display: flex;
     justify-self: flex-start;
+    margin-left: 1rem;
 }

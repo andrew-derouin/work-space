@@ -9,12 +9,14 @@ export class App {
     Controls: Controls;
     isActive: boolean;
     mainItem: Item;
+    currentPage: string;
 
     constructor() {
         this.MainData = new ManageData();
         this.Controls = new Controls();
         this.isActive = false;
         this.mainItem = this.MainData.dataList[0];
+        this.currentPage = 'about';
     }
 
     setActiveFor(timer: number) {
@@ -22,6 +24,10 @@ export class App {
         setTimeout(() => {
             this.isActive = false;
         }, timer);
+    }
+
+    setCurrentPage(page: string) {
+        this.currentPage = page;
     }
 
     setMainItem(item: Item) {

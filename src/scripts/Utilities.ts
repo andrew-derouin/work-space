@@ -23,7 +23,8 @@ export function debounceEventListener(delay: number, listener: string, callback:
     });
 }
 
-export function trigger(eventName: string) {
-    var event = new Event(eventName);
+export function trigger(eventName: string, data: Object = {}) {
+    var event = new CustomEvent(eventName, { detail: data });
+    console.log(event)
     window.dispatchEvent(event);
 }

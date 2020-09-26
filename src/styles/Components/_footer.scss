@@ -1,27 +1,29 @@
 .footer-element {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 1s;
     width: 100%;
     height: 60px;
-    background: linear-gradient(to left, #000 30%, var(--footer-bg-color));
+    background-color: var(--footer-bg-color);
 
     @media (min-width: 700px) {
         justify-content: flex-end;
     }
 }
 
-.icon-row-footer {
-    display: flex;
+.footer-overlay {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 25%;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
+    background-color: black;
 }
 
-.icon {
-    width: 40px;
-    height: 40px;
-    margin: 0.3rem;
-    
-    img {
-        width: 100%;
-    }
+.icon-row-footer {
+    position: relative;
+    display: flex;
+    margin-right: 1rem;
 }

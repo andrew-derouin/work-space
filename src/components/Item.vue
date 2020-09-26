@@ -36,7 +36,7 @@ export default Vue.extend({
             relativePosition: this.position,
             itemData: this.data[this.index],
             buttonClass: this.position !== 0,
-            trigger: (event: string) => {ut.trigger(event)}
+            trigger: (event: string, data: Object) => {ut.trigger(event, data)}
         }
     },
     methods: {

@@ -1,6 +1,7 @@
 <!-- src/components/Main.vue -->
 <template>
     <div class="footer-element">
+        <div class="footer-overlay"></div>
         <div class="icon-row-footer">
             <a href="https://www.linkedin.com/in/andrew-derouin-b28277197/" title="Link to Andrew DeRouin's Linkedin account." target="_blank">
                 <div class="icon icon-linkedin">

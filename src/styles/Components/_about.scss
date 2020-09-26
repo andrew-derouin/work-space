@@ -1,0 +1,30 @@
+.about-collection {
+    width: 100%;
+}
+
+.about-element {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.about-text-block {
+    width: 80%;
+    min-width: 300px;
+    max-width: 500px;
+    margin: 1rem;
+    padding:  2rem;
+    background-color: rgba(0,0,0,0.7);
+    color: $color-light;
+}
+
+.about-photo {
+    width: 80%;
+    min-width: 300px;
+    max-width: 500px;
+    margin: 1rem;
+
+    img {
+        width: 100%;
+    }
+}

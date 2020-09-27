@@ -16,7 +16,6 @@ export class ManageData {
         items.forEach((item: any) => {
             data.push(new Item(item))
         });
-        console.log(data)
         return data;
     }
 

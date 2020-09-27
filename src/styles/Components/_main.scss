@@ -46,9 +46,11 @@
             justify-content: center;
             align-items: center;
             width: 100%;
+            text-align: center;
 
             .white-line {
                 width: 40%;
+                min-width: 200px;
             }
         }
     }

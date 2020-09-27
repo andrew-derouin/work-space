@@ -1,6 +1,7 @@
 .item-collection {
     display: flex;
     justify-content: center;
+    width: 100%;
     text-align: center;
 
     @media (min-width: $sm) {
@@ -20,7 +21,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 2rem;
-    padding: 2rem;
+    padding: 1rem;
     background-image: var(--main-bg-image);
     background-position: center;
     background-size: contain;
@@ -29,6 +30,7 @@
     @media (min-width: $sm) {
         min-width: 700px;
         max-width: 1000px;
+        padding: 2rem;
     }
 
     img, .item-info {
@@ -41,7 +43,7 @@
     
     .item-info {
         align-self: center;
-        width: 95%;
+        width: 100%;
         padding: 1em;
         background-color: $text-box-bg-dark;
         color: $color-light;
@@ -58,7 +60,7 @@
     }
     
     .screenshot-case {
-        width: 95%;
+        width: 100%;
 
         @media (min-width: $sm) {
             width: calc(60% - 100px);

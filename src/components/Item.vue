@@ -56,15 +56,15 @@ export default Vue.extend({
             
             if (this.relativePosition === 0) {
                 window.$App.setMainItem(this.dataList[newIndex]);
+                ut.trigger('show-overlay', { headline: this.dataList[newIndex].name });
             }
-
-            ut.trigger('show-overlay', { headline: this.dataList[newIndex].name });
 
             this.animateChange(change);
             window.$App.setActiveFor(1100);
             setTimeout(() => {
                 this.listIndex = newIndex;
                 this.itemData = this.dataList[newIndex];
+                this.setCoverImage();
             }, 1000);
         },
         animateChange(change: number): void {
@@ -86,19 +86,21 @@ export default Vue.extend({
                     }
                 }, 1000);
             }
+        },
+        setCoverImage(): void {
+            window.innerWidth < Breakpoint.sm ? this.coverImage = 'none' : this.coverImage = `url(${this.itemData.images[0]})`;
         }
     },
     created() {
-
+        this.setCoverImage();
     },
     mounted() {
         this.element = document.getElementsByClassName('item-element')[this.relativePosition + 2] as HTMLElement;
         ut.addEvent('ArrowRight', () => { this.changeItem(1) }, 50, 'slideshow')
         ut.addEvent('ArrowLeft', () => { this.changeItem(-1) }, 50, 'slideshow')
-
-        window.innerWidth < Breakpoint.sm ? this.coverImage = 'none' : this.coverImage = `url(${this.itemData.images[0]})`;
+        
         ut.onResize(() => {
-            window.innerWidth < Breakpoint.sm ? this.coverImage = 'none' : this.coverImage = `url(${this.itemData.images[0]})`;
+            this.setCoverImage();
         });
     },
     watch: {

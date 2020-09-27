@@ -1,6 +1,6 @@
 <!-- src/components/Main.vue -->
 <template>
-    <div class="header-element">
+    <header class="header-element">
         <div class="header-overlay"></div>
         <div class="icon-row-navigation">
             <div class="icon icon-bitbucket" v-on:click="trigger('move-to', { page: 'about' })">
@@ -16,7 +16,7 @@
                 <img v-bind:src="'./src/icons/workshop-icon.svg'" />
             </div>
         </div>
-    </div>
+    </header>
 </template>
 
 <script lang="ts">

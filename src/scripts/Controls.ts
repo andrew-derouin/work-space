@@ -51,14 +51,28 @@ export class Controls {
     }
 
     readTouch() {
-        ut.addEvent('touchend', (e: TouchEvent) => {
+        let recentTouch: Array<number> = [];
+
+        ut.addEvent('touchstart', (e: TouchEvent) => {
             if (!window.$App.isActive) {
-                if (e.changedTouches[0].clientX < 0) {
-                    ut.trigger('ArrowRight');
-                } else {
-                    ut.trigger('ArrowLeft');
-                }
+                let touch = e.changedTouches[0].pageX;
+                recentTouch[0] = touch;
             }
         }, 200);
+        ut.addEvent('touchend', (e: TouchEvent) => {
+            if (!window.$App.isActive) {
+                let touch = e.changedTouches[0].pageX;
+                recentTouch[1] = touch;
+                checkTouch();
+            }
+        }, 200);
+
+        function checkTouch() {
+            if (recentTouch[0] < recentTouch[1]) {
+                ut.trigger('ArrowRight');
+            } else {
+                ut.trigger('ArrowLeft');
+            }
+        }
     }
 }

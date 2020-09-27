@@ -1,6 +1,6 @@
 <!-- src/components/Main.vue -->
 <template>
-    <div class="main-element">
+    <section class="main-element">
         <div v-show="currentPage.id === 'slideshow'" class="item-collection">
             <item-component v-show="showWings" :data="MainData.dataList" :index="MainData.dataList.length -2" :position="-2" />
             <item-component v-show="showWings" :data="MainData.dataList" :index="MainData.dataList.length -1" :position="-1" />
@@ -16,7 +16,7 @@
             <div>{{ overlayHeadline }}</div>
             <div class="white-line"></div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script lang="ts">

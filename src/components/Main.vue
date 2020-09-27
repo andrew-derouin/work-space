@@ -43,9 +43,6 @@ export default Vue.extend({
         }
     },
     methods: {
-        animateMove: function(): void {
-
-        },
         setHeight: function(): void {
             if (window.innerWidth < 767.98) {
                 this.showWings = false;

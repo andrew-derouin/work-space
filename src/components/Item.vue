@@ -8,10 +8,10 @@
             </div>
             <div class="screenshot-case">
                 <div class="screenshot-element">
-                    <img v-bind:src="itemData.images[1]" />
+                    <img v-bind:src="itemData.images[1]" alt="This is a screenshot from {{itemData.name}}." />
                 </div>
                 <div class="screenshot-element">
-                    <img v-bind:src="itemData.images[2]" />
+                    <img v-bind:src="itemData.images[2]" al="This is another screenshot from {{itemData.name}}." />
                 </div>
             </div>
         </div>

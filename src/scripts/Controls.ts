@@ -68,9 +68,10 @@ export class Controls {
         }, 200);
 
         function checkTouch() {
-            if (recentTouch[0] > recentTouch[1]) {
+            console.log(recentTouch)
+            if (recentTouch[0] > recentTouch[1] + 50) {
                 ut.trigger('ArrowRight');
-            } else {
+            } else if (recentTouch[0] < recentTouch[1] - 50) {
                 ut.trigger('ArrowLeft');
             }
         }

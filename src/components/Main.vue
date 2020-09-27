@@ -12,9 +12,11 @@
             <about-component />
         </div>
         <div class="main-overlay" v-bind:class="{ 'active': showOverlay }">
-            <div class="white-line"></div>
-            <div>{{ overlayHeadline }}</div>
-            <div class="white-line"></div>
+            <div class="main-overlay-content">
+                <div class="white-line"></div>
+                <div>{{ overlayHeadline }}</div>
+                <div class="white-line"></div>
+            </div>
         </div>
     </section>
 </template>

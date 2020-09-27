@@ -11,30 +11,45 @@
 }
 
 .main-overlay {
-    transition: background-color 1s, color 0.5s;
-    display: none;
+    transition: opacity 0.5s;
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    width: 0;
 
-    .white-line {
-        transition: width 0.5s;
-        width: 10%;
-        height: 20px;
-        background-color: white;
+    .main-overlay-content {
+        .white-line {
+            display: block;
+            transition: width 0.5s;
+            width: 10%;
+            height: 15px;
+            background-color: $color-light;
+        }
     }
 
     &.active {
         position: absolute;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        opacity: 1;
         width: 100%;
         height: 100%;
         color: $color-light;
         font-size: 3rem;
-        background-color: rgba(0,0,0, 0.8);
+        text-transform: uppercase;
+        background-color: $text-box-bg-dark;
 
-        .white-line {
-            width: 40%;
+        .main-overlay-content {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .white-line {
+                width: 40%;
+            }
         }
     }
 }

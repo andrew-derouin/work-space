@@ -68,7 +68,7 @@ export class Controls {
         }, 200);
 
         function checkTouch() {
-            if (recentTouch[0] < recentTouch[1]) {
+            if (recentTouch[0] > recentTouch[1]) {
                 ut.trigger('ArrowRight');
             } else {
                 ut.trigger('ArrowLeft');

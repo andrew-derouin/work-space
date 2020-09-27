@@ -2,7 +2,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     transition: background-color 2s;
     width: 100%;
     height: var(--main-element-height);

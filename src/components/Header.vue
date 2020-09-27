@@ -10,7 +10,12 @@
                 <img v-bind:src="'./src/icons/slideshow-icon.svg'" />
             </div>
         </div>
-        <div class="header-headline text-center"><h1>Work Space</h1></div>
+        <div class="header-headline text-center">
+            <h1 class="d-none d-md-block">Work Space</h1>
+            <div class="icon icon-workshop d-md-none" v-on:click="trigger('move-to', { page: 'about' })">
+                <img v-bind:src="'./src/icons/workshop-icon.svg'" />
+            </div>
+        </div>
     </div>
 </template>
 

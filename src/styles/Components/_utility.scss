@@ -2,6 +2,18 @@
     display: none;
 }
 
+.d-md-none {
+    @media (min-width: $sm) {
+        display: none;
+    }
+}
+
+.d-md-block {
+    @media (min-width: $sm) {
+        display: block;
+    }
+}
+
 .opacity-0 {
     opacity: 0;
 

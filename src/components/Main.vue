@@ -47,7 +47,7 @@ export default Vue.extend({
 
         },
         setHeight: function(): void {
-            if (window.innerWidth < 700) {
+            if (window.innerWidth < 767.98) {
                 this.showWings = false;
                 this.elementHeight = '100%';
             } else {
@@ -84,12 +84,12 @@ export default Vue.extend({
     created: function () {
         this.setColors();
 
-        window.addEventListener('main-item-change', () => {
+        ut.addEvent('main-item-change', () => {
             this.mainItem = this.App.mainItem;
             this.setColors();
-        });
+        }, 100);
 
-        window.addEventListener('move-to', ((e: CustomEvent & {page: string}) => {
+        ut.addEvent('move-to', (e: CustomEvent & {page: string}) => {
             let page = e.detail.page;
             if (page) {
                 let nextPage = this.MainData.findPage(page);
@@ -105,7 +105,7 @@ export default Vue.extend({
             } else {
                 console.log('No designated page!')
             }
-        }) as EventListener);
+        }, 100);
 
         ut.addEvent('show-overlay', (e: CustomEvent & {headline: string, timer: number}) => {
             let timer = 1100;

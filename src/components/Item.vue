@@ -1,7 +1,7 @@
 <!-- src/components/Main.vue -->
 <template>
     <div class="item-element">
-        <div class="item-case" v-bind:style="{ backgroundImage: 'url(' + itemData.images[0] + ')' }">
+        <div class="item-case" v-bind:style="{ backgroundImage: coverImage }">
             <div class="item-info">
                 <h2>{{ itemData.name }}</h2>
                 <p>{{ itemData.description }}</p>
@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { Breakpoint } from "../App";
 import * as ut from "../scripts/Utilities";
 
 export default Vue.extend({
@@ -36,6 +37,7 @@ export default Vue.extend({
             relativePosition: this.position,
             itemData: this.data[this.index],
             buttonClass: this.position !== 0,
+            coverImage: 'none',
             trigger: (event: string, data: Object) => {ut.trigger(event, data)}
         }
     },
@@ -93,6 +95,11 @@ export default Vue.extend({
         this.element = document.getElementsByClassName('item-element')[this.relativePosition + 2] as HTMLElement;
         ut.addEvent('ArrowRight', () => { this.changeItem(1) }, 50, 'slideshow')
         ut.addEvent('ArrowLeft', () => { this.changeItem(-1) }, 50, 'slideshow')
+
+        window.innerWidth < Breakpoint.sm ? this.coverImage = 'none' : this.coverImage = `url(${this.itemData.images[0]})`;
+        ut.onResize(() => {
+            window.innerWidth < Breakpoint.sm ? this.coverImage = 'none' : this.coverImage = `url(${this.itemData.images[0]})`;
+        });
     },
     watch: {
 

@@ -20,8 +20,9 @@
 }
 
 .header-headline {
-    transform: translateX(-100%);
-    margin-left: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .icon-row-navigation {

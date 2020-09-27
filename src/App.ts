@@ -4,6 +4,12 @@ import { Controls } from "./scripts/Controls";
 import { ManageData } from "./scripts/ManageData";
 import * as ut from "./scripts/Utilities";
 
+export enum Breakpoint {
+    xs = 575.98,
+    sm = 767.98,
+    md = 991.98,
+    lg = 1199.98
+}
 
 export class App {
     MainData: ManageData;
@@ -17,7 +23,7 @@ export class App {
         this.Controls = new Controls();
         this.isActive = false;
         this.mainItem = this.MainData.dataList[0];
-        this.currentPage = this.MainData.findPage('slideshow');
+        this.currentPage = this.MainData.findPage('about');
     }
 
     setActiveFor(timer: number) {

@@ -14,17 +14,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            'scss': [
-              'style-loader',
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader'
-            ]
-          }
-        }
+        loader: 'vue-loader'
       },
       {
         test: /\.tsx?$/,
@@ -44,8 +34,8 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
           'vue-style-loader',
+          'style-loader',
           'css-loader',
           'sass-loader'
         ]

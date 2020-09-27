@@ -1,30 +1,17 @@
 <!-- src/components/Main.vue -->
 <template>
     <section class="main-element">
-        <div v-show="currentPage.id === 'slideshow'" class="item-collection">
-            <item-component v-show="showWings" :data="MainData.dataList" :index="MainData.dataList.length -2" :position="-2" />
-            <item-component v-show="showWings" :data="MainData.dataList" :index="MainData.dataList.length -1" :position="-1" />
-            <item-component :data="MainData.dataList" :index="listIndex" :position="0" />
-            <item-component v-show="showWings" :data="MainData.dataList" :index="listIndex + 1" :position="1" />
-            <item-component v-show="showWings" :data="MainData.dataList" :index="listIndex + 2" :position="2" />
-        </div>
-        <div v-show="currentPage.id === 'about'" class="about-collection">
-            <about-component />
-        </div>
-        <div class="main-overlay" v-bind:class="{ 'active': showOverlay }">
-            <div class="main-overlay-content">
-                <div class="white-line"></div>
-                <div>{{ overlayHeadline }}</div>
-                <div class="white-line"></div>
-            </div>
-        </div>
+        <items-component v-show="currentPage.id === 'slideshow'" :showWings="showWings" />
+        <about-component v-show="currentPage.id === 'about'" />
+        <overlay-component />
     </section>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import ItemComponent from "./Item.vue";
+import ItemsComponent from "./Items.vue";
 import AboutComponent from "./About.vue";
+import OverlayComponent from "./Overlay.vue";
 import { ManageData } from "../scripts/ManageData";
 import { Page } from "../classes/Page";
 import * as ut from "../scripts/Utilities";
@@ -35,13 +22,10 @@ export default Vue.extend({
         return {
             App: window.$App,
             MainData: window.$App.MainData,
-            listIndex: 0,
             elementHeight: '0',
-            showWings: false,
-            showOverlay: false,
             currentPage: window.$App.currentPage,
-            overlayHeadline: '',
-            mainItem: window.$App.mainItem
+            mainItem: window.$App.mainItem,
+            showWings: false
         }
     },
     methods: {
@@ -77,9 +61,6 @@ export default Vue.extend({
             ut.setCssVar('--active-btn-bg-color', mainObject.primaryColor);
         }
     },
-    watch: {
-
-    },
     created: function () {
         this.setColors();
 
@@ -105,27 +86,15 @@ export default Vue.extend({
                 console.log('No designated page!')
             }
         }, 100);
-
-        ut.addEvent('show-overlay', (e: CustomEvent & {headline: string, timer: number}) => {
-            let timer = 1100;
-            if (e.detail.timer) {
-                timer = e.detail.timer
-            }
-
-            this.overlayHeadline = e.detail.headline;
-            this.showOverlay = true;
-            setTimeout(() => {
-                this.showOverlay = false;
-            }, timer);
-        }, 1000);
     },
     mounted: function () {
        this.setHeight();
        ut.onResize(this.setHeight);
     },
     components: {
-        ItemComponent,
-        AboutComponent
+        ItemsComponent,
+        AboutComponent,
+        OverlayComponent
     }
 });
 </script>

@@ -1,16 +1,15 @@
-
 export function setCssVar(varName: string, value: string): void {
     document.documentElement.style.setProperty(varName, value);
 }
 
 export function onResize(callback: Function): void {
-   debounceEventListener(200, 'resize', callback);
+   addEvent('resize', callback, 200);
 }
 
-export function debounceEventListener(delay: number, listener: string, callback: Function) {
+export function addEvent(listener: string, callback:Function, delay: number = 10, context: string = 'all') {
     let wait: boolean = false;
     window.addEventListener(listener, function (e) {
-        if (wait) {
+        if (wait || (context !== 'all' && window.$App.currentPage.id !== context)) {
             return;
         } else {
             wait = true;
@@ -25,6 +24,5 @@ export function debounceEventListener(delay: number, listener: string, callback:
 
 export function trigger(eventName: string, data: Object = {}) {
     var event = new CustomEvent(eventName, { detail: data });
-    console.log(event)
     window.dispatchEvent(event);
 }

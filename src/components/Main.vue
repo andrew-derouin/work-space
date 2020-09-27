@@ -1,19 +1,19 @@
 <!-- src/components/Main.vue -->
 <template>
     <div class="main-element">
-        <div v-show="currentPage === 'slideshow'" class="item-collection">
-            <item-component v-show="showWings" :data="mainData.dataList" :index="mainData.dataList.length -2" :position="-2" />
-            <item-component v-show="showWings" :data="mainData.dataList" :index="mainData.dataList.length -1" :position="-1" />
-            <item-component :data="mainData.dataList" :index="listIndex" :position="0" />
-            <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 1" :position="1" />
-            <item-component v-show="showWings" :data="mainData.dataList" :index="listIndex + 2" :position="2" />
+        <div v-show="currentPage.id === 'slideshow'" class="item-collection">
+            <item-component v-show="showWings" :data="MainData.dataList" :index="MainData.dataList.length -2" :position="-2" />
+            <item-component v-show="showWings" :data="MainData.dataList" :index="MainData.dataList.length -1" :position="-1" />
+            <item-component :data="MainData.dataList" :index="listIndex" :position="0" />
+            <item-component v-show="showWings" :data="MainData.dataList" :index="listIndex + 1" :position="1" />
+            <item-component v-show="showWings" :data="MainData.dataList" :index="listIndex + 2" :position="2" />
         </div>
-        <div v-show="currentPage === 'about'" class="about-collection">
+        <div v-show="currentPage.id === 'about'" class="about-collection">
             <about-component />
         </div>
         <div class="main-overlay" v-bind:class="{ 'active': showOverlay }">
             <div class="white-line"></div>
-            <div>{{ mainItem.name }}</div>
+            <div>{{ overlayHeadline }}</div>
             <div class="white-line"></div>
         </div>
     </div>
@@ -24,22 +24,28 @@ import Vue from "vue";
 import ItemComponent from "./Item.vue";
 import AboutComponent from "./About.vue";
 import { ManageData } from "../scripts/ManageData";
+import { Page } from "../classes/Page";
 import * as ut from "../scripts/Utilities";
 
 export default Vue.extend({
     props: [],
     data() {
         return {
-            mainData: window.$App.MainData,
+            App: window.$App,
+            MainData: window.$App.MainData,
             listIndex: 0,
             elementHeight: '0',
             showWings: false,
             showOverlay: false,
-            currentPage: 'about',
+            currentPage: window.$App.currentPage,
+            overlayHeadline: '',
             mainItem: window.$App.mainItem
         }
     },
     methods: {
+        animateMove: function(): void {
+
+        },
         setHeight: function(): void {
             if (window.innerWidth < 700) {
                 this.showWings = false;
@@ -57,7 +63,7 @@ export default Vue.extend({
         setColors: function(): void {
             let mainObject: Object & { primaryColor: string, secondaryColor: string };
 
-            if (this.currentPage === 'slideshow') {
+            if (this.currentPage.id === 'slideshow') {
                 mainObject = this.mainItem;
             } else {
                 mainObject = {
@@ -79,27 +85,40 @@ export default Vue.extend({
         this.setColors();
 
         window.addEventListener('main-item-change', () => {
-            this.mainItem = window.$App.mainItem;
+            this.mainItem = this.App.mainItem;
             this.setColors();
         });
 
         window.addEventListener('move-to', ((e: CustomEvent & {page: string}) => {
             let page = e.detail.page;
             if (page) {
-                this.currentPage = page;
-                window.$App.setCurrentPage(page);
-                this.setColors();
+                let nextPage = this.MainData.findPage(page);
+                ut.trigger('show-overlay', { headline: nextPage.name });
+            
+                this.App.setActiveFor(1100);
+                setTimeout(() => {
+                    this.currentPage = nextPage;
+                    
+                    this.App.setCurrentPage(nextPage);
+                    this.setColors();
+                }, 500);
             } else {
                 console.log('No designated page!')
             }
         }) as EventListener);
 
-        ut.debounceEventListener(1000, 'show-overlay', () => {
+        ut.addEvent('show-overlay', (e: CustomEvent & {headline: string, timer: number}) => {
+            let timer = 1100;
+            if (e.detail.timer) {
+                timer = e.detail.timer
+            }
+
+            this.overlayHeadline = e.detail.headline;
             this.showOverlay = true;
             setTimeout(() => {
                 this.showOverlay = false;
-            }, 1100);
-        });
+            }, timer);
+        }, 1000);
     },
     mounted: function () {
        this.setHeight();

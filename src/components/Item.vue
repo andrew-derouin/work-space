@@ -56,7 +56,7 @@ export default Vue.extend({
                 window.$App.setMainItem(this.dataList[newIndex]);
             }
 
-            ut.trigger('show-overlay');
+            ut.trigger('show-overlay', { headline: this.dataList[newIndex].name });
 
             this.animateChange(change);
             window.$App.setActiveFor(1100);
@@ -87,12 +87,12 @@ export default Vue.extend({
         }
     },
     created() {
-        window.addEventListener('ArrowRight', () => { this.changeItem(1) });
-        window.addEventListener('ArrowLeft', () => { this.changeItem(-1) });
+
     },
     mounted() {
-
         this.element = document.getElementsByClassName('item-element')[this.relativePosition + 2] as HTMLElement;
+        ut.addEvent('ArrowRight', () => { this.changeItem(1) }, 50, 'slideshow')
+        ut.addEvent('ArrowLeft', () => { this.changeItem(-1) }, 50, 'slideshow')
     },
     watch: {
 

@@ -35,7 +35,7 @@ export class Controls {
     }
 
     readWheel() {
-        ut.debounceEventListener(1000, 'wheel', (e: WheelEvent) => {
+        ut.addEvent('wheel', (e: WheelEvent) => {
             if (!window.$App.isActive) {
                 if (e.deltaY !== 0) {
                     return;
@@ -47,11 +47,11 @@ export class Controls {
                     ut.trigger('ArrowLeft');
                 }
             }
-        });
+        }, 800);
     }
 
     readTouch() {
-        ut.debounceEventListener(200, 'touchend', (e: TouchEvent) => {
+        ut.addEvent('touchend', (e: TouchEvent) => {
             if (!window.$App.isActive) {
                 if (e.changedTouches[0].clientX < 0) {
                     ut.trigger('ArrowRight');
@@ -59,6 +59,6 @@ export class Controls {
                     ut.trigger('ArrowLeft');
                 }
             }
-        });
+        }, 200);
     }
 }

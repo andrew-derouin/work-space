@@ -8,9 +8,9 @@
                     <img v-bind:src="'./src/icons/linkedin-icon.svg'" />
                 </div>
             </a>
-            <a href="https://bitbucket.org/andrew--derouin/work-place/src/master/" title="Link to the Bitbucket Repository." target="_blank">
-                <div class="icon icon-bitbucket">
-                    <img v-bind:src="'./src/icons/bitbucket-icon.svg'" />
+            <a href="https://github.com/andrew-derouin/work-space" title="Link to the Github Repository." target="_blank">
+                <div class="icon icon-github">
+                    <img v-bind:src="'./src/icons/github-icon.svg'" />
                 </div>
             </a>
         </div>

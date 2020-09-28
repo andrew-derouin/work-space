@@ -15,10 +15,6 @@
                 </div>
             </div>
         </div>
-        <div class="btn-case" v-bind:class="{ 'opacity-0' : buttonClass }">
-            <button class="btn btn-active" v-on:click="trigger('ArrowRight');">Next Item</button>
-            <button class="btn btn-active" v-on:click="trigger('ArrowLeft');">Previous Item</button>
-        </div>
     </div>
 </template>
 

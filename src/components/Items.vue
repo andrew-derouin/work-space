@@ -17,20 +17,15 @@ import { Page } from "../classes/Page";
 import * as ut from "../scripts/Utilities";
 
 export default Vue.extend({
-    props: ['showWings'],
+    props: ['showWings', 'mainItem'],
     data() {
         return {
             App: window.$App,
             MainData: window.$App.MainData,
             listIndex: 0,
             showWings: this.showWings,
-            mainItem: window.$App.mainItem
+            mainItem: this.mainItem
         }
-    },
-    created: function () {
-        ut.addEvent('main-item-change', () => {
-            this.mainItem = this.App.mainItem;
-        }, 100);
     },
     components: {
         ItemComponent

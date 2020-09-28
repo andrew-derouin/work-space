@@ -1,9 +1,9 @@
 <!-- src/components/Main.vue -->
 <template>
     <section class="main-element">
-        <items-component v-show="currentPage.id === 'slideshow'" :showWings="showWings" />
+        <items-component v-show="currentPage.id === 'slideshow'" :showWings="showWings" :mainItem="mainItem" />
         <about-component v-show="currentPage.id === 'about'" />
-        <overlay-component />
+        <overlay-component :showArrowOverlay="currentPage.id === 'slideshow'" />
     </section>
 </template>
 

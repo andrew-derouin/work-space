@@ -31,7 +31,7 @@ export const items = [
         "id": "earthbound",
         "name": "Earthbound",
         "description": "EarthBound is a role-playing video game developed by Ape Inc. and HAL Laboratory and published by Nintendo for the Super Nintendo Entertainment System. The second entry in the Mother series, it was first released in Japan in August 1994, and in North America in June 1995. As Ness and his party of four, the player travels the world to collect melodies from eight Sanctuaries in order to defeat the evil alien force Giygas.",
-        "primaryColor": "rgba(25, 25, 25, 1)",
+        "primaryColor": "rgba(255, 209, 56, 1)",
         "secondaryColor": "rgba(87, 162, 52, 1)"
     }
 ];

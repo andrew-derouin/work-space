@@ -1,19 +1,19 @@
 <!-- src/components/Overlay.vue -->
 <template>
-    <div class="main-overlay" v-bind:class="{ 'active': showOverlay }">
+    <div class="main-overlay active" v-bind:class="{ 'active': showMainOverlay || showArrowOverlay }">
         <div v-show="showMainOverlay" class="main-overlay-content">
             <div class="white-line"></div>
             <div>{{ overlayHeadline }}</div>
             <div class="white-line"></div>
         </div>
-        <div v-show="showArrowOverlay" class="main-overlay-arrows">
+        <div v-show="showArrowOverlay && !showMainOverlay" class="main-overlay-arrows" v-on:click="trigger('ArrowLeft')">
             <div class="arrow-overlay arrow-overlay-left">
-                <div class="arrow-left">
+                <div class="arrow">
                     <img v-bind:src="'./src/icons/arrow-icon.svg'" />
                 </div>
             </div>
-            <div class="arrow-overlay arrow-overlay-right">
-                <div class="arrow-right">
+            <div class="arrow-overlay arrow-overlay-right" v-on:click="trigger('ArrowRight')">
+                <div class="arrow">
                     <img v-bind:src="'./src/icons/arrow-icon.svg'" />
                 </div>
             </div>
@@ -26,17 +26,17 @@ import Vue from "vue";
 import * as ut from "../scripts/Utilities";
 
 export default Vue.extend({
-    props: [],
+    props: ['showArrowOverlay'],
     data() {
         return {
-            showOverlay: false,
-            showMainOverlay: true,
-            showArrowOverlay: false,
-            overlayHeadline: ''
+            showArrowOverlay: this.showArrowOverlay,
+            showMainOverlay: false,
+            overlayHeadline: '',
+            trigger: (event: string, data: Object) => {ut.trigger(event, data)}
         }
     },
     methods: {
-
+        
     },
     components: {
 
@@ -49,9 +49,9 @@ export default Vue.extend({
             }
 
             this.overlayHeadline = e.detail.headline;
-            this.showOverlay = true;
+            this.showMainOverlay = true;
             setTimeout(() => {
-                this.showOverlay = false;
+                this.showMainOverlay = false;
             }, timer);
         }, 1000);
     }

@@ -6,8 +6,8 @@
             <div>{{ overlayHeadline }}</div>
             <div class="white-line"></div>
         </div>
-        <div v-show="showArrowOverlay && !showMainOverlay" class="main-overlay-arrows" v-on:click="trigger('ArrowLeft')">
-            <div class="arrow-overlay arrow-overlay-left">
+        <div v-show="showArrowOverlay && !showMainOverlay" class="main-overlay-arrows">
+            <div class="arrow-overlay arrow-overlay-left" v-on:click="trigger('ArrowLeft')">
                 <div class="arrow">
                     <img v-bind:src="'./src/icons/arrow-icon.svg'" />
                 </div>

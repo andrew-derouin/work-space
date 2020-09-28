@@ -1,6 +1,6 @@
-<!-- src/components/Main.vue -->
+<!-- src/components/Item.vue -->
 <template>
-    <div class="item-element">
+    <a class="item-element" v-bind:href="itemData.url" v-bind:title="`Check out the wikipedia page for ${itemData.name}.`">
         <div class="item-case" v-bind:style="{ backgroundImage: coverImage }">
             <div class="item-info">
                 <h2>{{ itemData.name }}</h2>
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </a>
 </template>
 
 <script lang="ts">

@@ -13,6 +13,7 @@ export class Item {
     coverImage: string;
     primaryColor: string;
     secondaryColor: string;
+    url: string;
 
     constructor(jsonItem: any) {
         this.jsonItem = jsonItem;
@@ -25,6 +26,7 @@ export class Item {
         this.images = this.createImagePaths();
         this.primaryColor = jsonItem.primaryColor;
         this.secondaryColor = jsonItem.secondaryColor;
+        this.url = jsonItem.url;
     }
 
     createImagePaths(): Array<string> {

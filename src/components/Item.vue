@@ -1,17 +1,20 @@
 <!-- src/components/Item.vue -->
 <template>
     <a class="item-element" v-bind:href="itemData.url" v-bind:title="`Check out the wikipedia page for ${itemData.name}.`">
-        <div class="item-case" v-bind:style="{ backgroundImage: coverImage }">
+        <div class="item-case">
+            <div v-show="showCoverImage" class="item-bg-image">
+                <img v-bind:src="itemData.images[0]" v-bind:alt="`This is a cover image for ${itemData.name}.`" />
+            </div>
             <div class="item-info">
                 <h2>{{ itemData.name }}</h2>
                 <p>{{ itemData.description }}</p>
             </div>
             <div class="screenshot-case">
-                <div class="screenshot-element">
-                    <img v-bind:src="itemData.images[1]" v-bind:alt="`This is a screenshot from ${itemData.name}.`" />
+                <div v-show="showScreenshots" class="screenshot-element">
+                    <img :key="screenshot" transition="fade-in" v-bind:src="itemData.images[1]" v-bind:alt="`This is a screenshot from ${itemData.name}.`" />
                 </div>
-                <div class="screenshot-element">
-                    <img v-bind:src="itemData.images[2]" v-bind:alt="`This is another screenshot from ${itemData.name}.`" />
+                <div v-show="showScreenshots" class="screenshot-element">
+                    <img :key="screenshot" v-bind:src="itemData.images[2]" v-bind:alt="`This is another screenshot from ${itemData.name}.`" />
                 </div>
             </div>
         </div>
@@ -33,7 +36,8 @@ export default Vue.extend({
             relativePosition: this.position,
             itemData: this.data[this.index],
             buttonClass: this.position !== 0,
-            coverImage: 'none',
+            showCoverImage: false,
+            showScreenshots: true,
             trigger: (event: string, data: Object) => {ut.trigger(event, data)}
         }
     },
@@ -53,6 +57,8 @@ export default Vue.extend({
             if (this.relativePosition === 0) {
                 window.$App.setMainItem(this.dataList[newIndex]);
                 ut.trigger('show-overlay', { headline: this.dataList[newIndex].name });
+                this.showCoverImage = false;
+                this.showScreenshots = false;
             }
 
             this.animateChange(change);
@@ -60,6 +66,7 @@ export default Vue.extend({
             setTimeout(() => {
                 this.listIndex = newIndex;
                 this.itemData = this.dataList[newIndex];
+                this.showScreenshots = true;
                 this.setCoverImage();
             }, 1000);
         },
@@ -84,7 +91,7 @@ export default Vue.extend({
             }
         },
         setCoverImage(): void {
-            window.innerWidth < Breakpoint.sm ? this.coverImage = 'none' : this.coverImage = `url(${this.itemData.images[0]})`;
+            window.innerWidth > Breakpoint.sm && this.relativePosition === 0 ? this.showCoverImage = true : this.showCoverImage = false;
         }
     },
     created() {
@@ -98,9 +105,6 @@ export default Vue.extend({
         ut.onResize(() => {
             this.setCoverImage();
         });
-    },
-    watch: {
-
     }
 });
 </script>

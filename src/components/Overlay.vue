@@ -1,6 +1,6 @@
 <!-- src/components/Overlay.vue -->
 <template>
-    <div class="main-overlay active" v-bind:class="{ 'active': showMainOverlay || showArrowOverlay }">
+    <div class="main-overlay" v-bind:class="{ 'active': showMainOverlay || showArrowOverlay }">
         <div v-show="showMainOverlay" class="main-overlay-content">
             <div class="white-line"></div>
             <div>{{ overlayHeadline }}</div>
@@ -43,7 +43,7 @@ export default Vue.extend({
     },
     mounted() {
         ut.addEvent('show-overlay', (e: CustomEvent & {headline: string, timer: number}) => {
-            let timer = 1100;
+            let timer = 1200;
             if (e.detail.timer) {
                 timer = e.detail.timer
             }

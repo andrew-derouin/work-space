@@ -26,3 +26,14 @@ export function trigger(eventName: string, data: Object = {}) {
     var event = new CustomEvent(eventName, { detail: data });
     window.dispatchEvent(event);
 }
+
+export function flash(element?: HTMLElement, timer: number = 100): void {
+    let el = element;
+    if (!el) {
+        el = document.getElementsByClassName('main-overlay')[0] as HTMLElement;
+    }
+    el.classList.add('flash');
+    setTimeout(() => {
+        el?.classList.remove('flash');
+    }, timer);
+}

@@ -29,6 +29,14 @@ export default Vue.extend({
     },
     components: {
         ItemComponent
+    },
+    mounted() {
+        ut.addEvent('change-item', () => {
+            ut.setCssVar('--img-opacity', '0');
+            setTimeout(() => {
+                ut.setCssVar('--img-opacity', '1');
+            },500);
+        });
     }
 });
 </script>

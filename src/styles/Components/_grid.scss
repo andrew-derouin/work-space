@@ -1,0 +1,5 @@
+.item-grid {
+    display: grid;
+    grid-template-columns: 10% auto 30%;
+    grid-template-rows: 25% 75% auto;
+}

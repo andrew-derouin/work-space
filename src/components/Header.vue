@@ -3,11 +3,14 @@
     <header class="header-element">
         <div class="header-overlay"></div>
         <div class="icon-row-navigation">
-            <div class="icon icon-bitbucket" v-on:click="trigger('move-to', { page: 'about' })">
+            <div class="icon icon-about" v-on:click="trigger('move-to', { page: 'about' })">
                 <img v-bind:src="'./src/icons/about-icon.svg'" />
             </div>
-            <div class="icon icon-linkedin" v-on:click="trigger('move-to', { page: 'slideshow' })">
+            <div class="icon icon-slideshow" v-on:click="trigger('move-to', { page: 'slideshow' })">
                 <img v-bind:src="'./src/icons/slideshow-icon.svg'" />
+            </div>
+            <div class="icon icon-tiles" v-on:click="trigger('move-to', { page: 'tiles' })">
+                <img v-bind:src="'./src/icons/tile-icon.svg'" />
             </div>
         </div>
         <div class="header-headline text-center">

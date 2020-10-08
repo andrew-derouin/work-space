@@ -1,5 +1,5 @@
 const ImageTypes: any = {
-    'standard': ['c-01', 's-01', 's-02']
+    'standard': ['c-01', 's-01', 's-02', 's-03', 's-04']
 }
 
 export class Item {
@@ -7,6 +7,8 @@ export class Item {
     id: string;
     name: string;
     description: string;
+    releaseDate: string;
+    publisher: string;
     type: string;
     imageTypes: Array<string>
     images: Array<string>;
@@ -20,6 +22,8 @@ export class Item {
         this.id = jsonItem.id;
         this.name = jsonItem.name;
         this.description = jsonItem.description;
+        this.releaseDate = jsonItem.releaseDate;
+        this.publisher = jsonItem.publisher;
         this.type = 'standard';
         this.imageTypes = ImageTypes[this.type];
         this.coverImage = this.imageTypes[0];

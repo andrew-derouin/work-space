@@ -1,0 +1,109 @@
+.tile-page {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+
+    img {
+        width: 100%;
+    }
+}
+
+.tile-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.tile-list-container {
+    margin: 2rem auto;
+}
+
+.tile-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 2rem;
+}
+
+.tile-main {
+    position: relative;
+    max-width: 240px;
+    margin: 2rem 2px;
+    padding: 0.5rem;
+    background-color: var(--main-bg-color);
+    color: $color-dark;
+    text-align: center;
+    cursor: pointer;
+
+    .tile-img {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 140px;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+
+        .standard-img {
+            transition: opacity 1s;
+        }
+
+        .hover-img {
+            position: absolute;
+            transition: opacity 1s;
+            opacity: 0;
+        }
+    }
+
+    .tile-info {
+        h3 {
+            margin: 0.5rem;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .tile-description {
+        position: absolute;
+        top: 100%;
+        left: -1px;
+        width: calc(100% + 2px);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 1s, opacity 1s;
+        padding: 1rem;
+        opacity: 0;;
+        overflow: hidden;
+        background-color: $color-light;
+        text-align: left;
+    }
+    
+    &:hover {
+        border: 1px solid $color-dark;
+        border-bottom: none;
+
+        .standard-img {
+            opacity: 0;
+        }
+
+        .hover-img {
+            opacity: 1;
+        }
+
+        .tile-description {
+            transform: scale(1);
+            opacity: 1;
+            z-index: 10;
+            border: 1px solid $color-dark;
+            border-top: none;
+        }    
+    }
+}

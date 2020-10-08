@@ -3,6 +3,7 @@
     <section class="main-element">
         <items-component v-show="currentPage.id === 'slideshow'" :showWings="showWings" :mainItem="mainItem" />
         <about-component v-show="currentPage.id === 'about'" />
+        <tiles-component v-show="currentPage.id === 'tiles'" :CurrentItem="App.mainItem" />
         <overlay-component :showArrowOverlay="currentPage.id === 'slideshow'" />
     </section>
 </template>
@@ -11,6 +12,7 @@
 import Vue from "vue";
 import ItemsComponent from "./Items.vue";
 import AboutComponent from "./About.vue";
+import TilesComponent from "./Tiles.vue";
 import OverlayComponent from "./Overlay.vue";
 import { ManageData } from "../scripts/ManageData";
 import { Page } from "../classes/Page";
@@ -48,10 +50,15 @@ export default Vue.extend({
 
             if (this.currentPage.id === 'slideshow') {
                 mainObject = this.mainItem;
+            } else if(this.currentPage.id === 'tiles') {
+                mainObject = {
+                    primaryColor: 'rgba(21, 94, 168, 1)',
+                    secondaryColor: 'rgba(255, 255, 255, 1)'
+                }
             } else {
                 mainObject = {
                     primaryColor: 'rgba(212, 22, 22, 1)',
-                    secondaryColor: 'rgba(247, 233, 181, 1)'
+                    secondaryColor: 'rgba(255, 255, 255, 1)'
                 }
             }
 
@@ -94,6 +101,7 @@ export default Vue.extend({
     components: {
         ItemsComponent,
         AboutComponent,
+        TilesComponent,
         OverlayComponent
     }
 });

@@ -8,7 +8,10 @@ export class ManageData {
 
     constructor() {
         this.dataList = this.assembleData();
-        this.pages = [new Page('about', 'About Page'), new Page('slideshow', 'Old Games')];
+        this.pages = [
+            new Page('about', 'About Page'), 
+            new Page('slideshow', 'Old Games'),
+            new Page('tiles', 'Tile Page')];
     }
 
     assembleData(): Array<Item> {

@@ -37,3 +37,9 @@ export function flash(element?: HTMLElement, timer: number = 100): void {
         el?.classList.remove('flash');
     }, timer);
 }
+
+export function animationTiming(elementClass: string, start: Function, end: Function) {
+    var element: HTMLElement = document.getElementsByClassName(elementClass)[0] as HTMLElement;
+    element.addEventListener('animationstart', start());
+    element.addEventListener('animationend', end());
+}

@@ -4,6 +4,7 @@
         <items-component v-show="currentPage.id === 'slideshow'" :showWings="showWings" :mainItem="mainItem" />
         <about-component v-show="currentPage.id === 'about'" />
         <tiles-component v-show="currentPage.id === 'tiles'" :CurrentItem="App.mainItem" />
+        <maze-component v-show="currentPage.id === 'maze'" />
         <overlay-component :showArrowOverlay="currentPage.id === 'slideshow'" />
     </section>
 </template>
@@ -12,6 +13,7 @@
 import Vue from "vue";
 import ItemsComponent from "./Items.vue";
 import AboutComponent from "./About.vue";
+import MazeComponent from "./Maze.vue";
 import TilesComponent from "./Tiles.vue";
 import OverlayComponent from "./Overlay.vue";
 import { ManageData } from "../scripts/ManageData";
@@ -101,6 +103,7 @@ export default Vue.extend({
     components: {
         ItemsComponent,
         AboutComponent,
+        MazeComponent,
         TilesComponent,
         OverlayComponent
     }

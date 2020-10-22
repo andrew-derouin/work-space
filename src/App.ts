@@ -23,7 +23,7 @@ export class App {
         this.Controls = new Controls();
         this.isActive = false;
         this.mainItem = this.MainData.dataList[0];
-        this.currentPage = this.MainData.findPage('about');
+        this.currentPage = this.MainData.findPage('maze');
     }
 
     setActiveFor(timer: number) {

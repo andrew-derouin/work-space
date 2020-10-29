@@ -11,6 +11,8 @@
 
     .main-overlay-content {
         pointer-events: all;
+        z-index: 100;
+        
         .white-line {
             display: block;
             transition: width 0.5s;

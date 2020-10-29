@@ -3,8 +3,8 @@
     <section class="main-element">
         <items-component v-show="currentPage.id === 'slideshow'" :showWings="showWings" :mainItem="mainItem" />
         <about-component v-show="currentPage.id === 'about'" />
-        <tiles-component v-show="currentPage.id === 'tiles'" :CurrentItem="App.mainItem" />
-        <maze-component v-show="currentPage.id === 'maze'" />
+        <tiles-component v-if="currentPage.id === 'tiles'" :CurrentItem="App.mainItem" />
+        <maze-component v-if="currentPage.id === 'maze'" :algorithm="'binaryTree'" />
         <overlay-component :showArrowOverlay="currentPage.id === 'slideshow'" />
     </section>
 </template>
@@ -57,7 +57,13 @@ export default Vue.extend({
                     primaryColor: 'rgba(21, 94, 168, 1)',
                     secondaryColor: 'rgba(255, 255, 255, 1)'
                 }
-            } else {
+            } else if(this.currentPage.id === 'maze') {
+                mainObject = {
+                    primaryColor: '#136fa9',
+                    secondaryColor: 'rgba(255, 255, 255, 1)'
+                }
+            }
+            else {
                 mainObject = {
                     primaryColor: 'rgba(212, 22, 22, 1)',
                     secondaryColor: 'rgba(255, 255, 255, 1)'

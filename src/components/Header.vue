@@ -9,8 +9,8 @@
             <div class="icon icon-slideshow" v-on:click="trigger('move-to', { page: 'slideshow' })">
                 <img v-bind:src="'./src/icons/slideshow-icon.svg'" />
             </div>
-            <div class="icon icon-tiles" v-on:click="trigger('move-to', { page: 'tiles' })">
-                <img v-bind:src="'./src/icons/tile-icon.svg'" />
+            <div class="icon icon-maze" v-on:click="trigger('move-to', { page: 'maze' })">
+                <img v-bind:src="'./src/icons/maze-icon.svg'" />
             </div>
         </div>
         <div class="header-headline text-center">

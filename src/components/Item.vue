@@ -11,10 +11,10 @@
             </div>
             <div class="screenshot-case">
                 <div v-show="showScreenshots" class="screenshot-element">
-                    <img :key="screenshot" transition="fade-in" v-bind:src="itemData.images[1]" v-bind:alt="`This is a screenshot from ${itemData.name}.`" />
+                    <img v-bind:src="itemData.images[1]" v-bind:alt="`This is a screenshot from ${itemData.name}.`" />
                 </div>
                 <div v-show="showScreenshots" class="screenshot-element">
-                    <img :key="screenshot" v-bind:src="itemData.images[2]" v-bind:alt="`This is another screenshot from ${itemData.name}.`" />
+                    <img v-bind:src="itemData.images[2]" v-bind:alt="`This is another screenshot from ${itemData.name}.`" />
                 </div>
             </div>
         </div>

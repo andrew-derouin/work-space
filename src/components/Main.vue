@@ -1,7 +1,7 @@
 <!-- src/components/Main.vue -->
 <template>
     <section class="main-element">
-        <items-component v-show="currentPage.id === 'slideshow'" :showWings="showWings" :mainItem="mainItem" />
+        <items-component v-if="currentPage.id === 'slideshow'" :showWings="showWings" :mainItem="mainItem" />
         <about-component v-show="currentPage.id === 'about'" />
         <tiles-component v-if="currentPage.id === 'tiles'" :CurrentItem="App.mainItem" />
         <maze-component v-if="currentPage.id === 'maze'" :algorithm="'binaryTree'" />

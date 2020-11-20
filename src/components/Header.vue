@@ -3,7 +3,7 @@
     <header class="header-element">
         <div class="header-overlay"></div>
         <div class="icon-row-navigation">
-            <div class="icon icon-about" v-on:click="trigger('move-to', { page: 'about' })">
+            <div class="icon icon-about desktop-only" v-on:click="trigger('move-to', { page: 'about' })">
                 <img v-bind:src="'./src/icons/about-icon.svg'" />
             </div>
             <div class="icon icon-slideshow" v-on:click="trigger('move-to', { page: 'slideshow' })">

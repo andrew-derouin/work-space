@@ -1,20 +1,14 @@
 <!-- src/components/Main.vue -->
 <template>
     <div class="item-collection">
-        <div class="item-container">
-            <item-component :data="MainData.dataList" :index="MainData.dataList.length - 2" :showCover="coversEnabled"/>
-        </div>
-        <div class="item-container">
-            <item-component :data="MainData.dataList" :index="MainData.dataList.length - 1" :showCover="coversEnabled"/>
-        </div>
-        <div class="item-container" v-for="(item, index) in MainData.dataList" :key="item.id">
+        <div class="item-container item-container-wing" v-for="(item, index) in MainData.dataList" :key="item.id">
             <item-component :data="MainData.dataList" :index="index" :showCover="coversEnabled"/>
         </div>
-        <div class="item-container">
-            <item-component :data="MainData.dataList" :index="0" :showCover="coversEnabled"/>
+        <div class="item-container item-container-main" v-for="(item, index) in MainData.dataList" :key="item.id">
+            <item-component :data="MainData.dataList" :index="index" :showCover="coversEnabled"/>
         </div>
-        <div class="item-container">
-            <item-component :data="MainData.dataList" :index="1" :showCover="coversEnabled"/>
+        <div class="item-container item-container-wing" v-for="(item, index) in MainData.dataList" :key="item.id">
+            <item-component :data="MainData.dataList" :index="index" :showCover="coversEnabled"/>
         </div>
     </div>
 </template>
@@ -22,39 +16,37 @@
 <script lang="ts">
 import Vue from "vue";
 import ItemComponent from "./Item.vue";
-import { ManageData } from "../scripts/ManageData";
-import { Page } from "../classes/Page";
 import * as ut from "../scripts/Utilities";
+import { items } from "../data/items";
 
 export default Vue.extend({
     props: ['showWings', 'mainItem'],
     data() {
         return {
-            App: window.$App,
             MainData: window.$App.MainData,
             listIndex: 0,
             showWings: this.showWings,
-            mainItem: this.mainItem,
             windowWidth: window.innerWidth
         }
     },
     methods: {
-        changeItem: function(change: number): void {
+        changeItem: function (change: number): void {
             var el = document.querySelector('.item-collection') as HTMLElement;
             var lastIndex = this.MainData.dataList.length - 1;
             var newIndex = this.listIndex + change;
 
             this.listIndex = newIndex;
 
+            newIndex = newIndex < 0 ? lastIndex : newIndex > lastIndex ? 0 : newIndex;
+
+            window.$App.mainItem = window.$App.MainData.dataList[newIndex];
+            ut.trigger('move-to', {page: 'slideshow', headline:  window.$App.mainItem.name});
+
             setTimeout(() => {
                 el.classList.add('no-transition');
-                if (newIndex < 0) {
-                    this.listIndex = lastIndex;
-                }
 
-                if (newIndex > lastIndex) {
-                    this.listIndex = 0;
-                }
+                this.listIndex = newIndex;
+
                 setTimeout(() => {
                     el.classList.remove('no-transition');  
                 }, 50);
@@ -83,14 +75,20 @@ export default Vue.extend({
         ut.addEvent('ArrowLeft', () => { this.changeItem(-1) }, 1100, 'slideshow');
 
         ut.addEvent('resize', () => { this.windowWidth = window.innerWidth; }, 100);
+        ut.addEvent('resize', () => { ut.setCssVar('--item-transform', `${this.transform}px`); }, 500);
     },
     computed: {
-        transform: function(): string {
-            var widthAdjustment = Math.round(this.itemWidth/2) - this.itemWidth * 2;
-            return ((this.listIndex * this.itemWidth * -1) + widthAdjustment).toString();
+        transform: function (): string {
+            var firstWingWidth = document.querySelector('.item-container-wing') as HTMLElement;
+            var itemsOnScreen = this.windowWidth/this.itemWidth;
+            var goBack = Math.floor(itemsOnScreen);
+            var halfScreen = Math.round((this.itemWidth * itemsOnScreen)/2);
+            var widthAdjustment = halfScreen + firstWingWidth?.offsetWidth * window.$App.MainData.dataList.length;
+
+            return (-((this.listIndex - goBack) * this.itemWidth) - widthAdjustment).toString();
         },
-        itemWidth: function(): number {
-            var el = document.querySelector('.item-container') as HTMLElement;
+        itemWidth: function (): number {
+            var el = document.querySelector('.item-container-main') as HTMLElement;
             return el ? el.offsetWidth : 0;
         },
         coversEnabled: function(): boolean {
@@ -99,7 +97,11 @@ export default Vue.extend({
                 conversEnabled = true;
             }
             return conversEnabled;
+        },
+        mainItem: function (): any {
+            return window.$App.MainData.dataList[this.listIndex];
         }
+
     }
 });
 </script>

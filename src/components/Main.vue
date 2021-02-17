@@ -16,8 +16,6 @@ import AboutComponent from "./About.vue";
 import MazeComponent from "./Maze.vue";
 import TilesComponent from "./Tiles.vue";
 import OverlayComponent from "./Overlay.vue";
-import { ManageData } from "../scripts/ManageData";
-import { Page } from "../classes/Page";
 import * as ut from "../scripts/Utilities";
 
 export default Vue.extend({
@@ -28,7 +26,6 @@ export default Vue.extend({
             MainData: window.$App.MainData,
             elementHeight: '0',
             currentPage: window.$App.currentPage,
-            mainItem: window.$App.mainItem,
             showWings: false
         }
     },
@@ -76,6 +73,11 @@ export default Vue.extend({
             ut.setCssVar('--active-btn-bg-color', mainObject.primaryColor);
         }
     },
+    computed: {
+        mainItem: function () {
+            return window.$App.mainItem;
+        }
+    },
     created: function () {
         this.setColors();
 
@@ -84,11 +86,12 @@ export default Vue.extend({
             this.setColors();
         }, 100);
 
-        ut.addEvent('move-to', (e: CustomEvent & {page: string}) => {
+        ut.addEvent('move-to', (e: CustomEvent & {page: string, headline: string}) => {
             let page = e.detail.page;
             if (page) {
                 let nextPage = this.MainData.findPage(page);
-                ut.trigger('show-overlay', { headline: nextPage.name });
+                let headline = e.detail.headline ? e.detail.headline : nextPage.name;
+                ut.trigger('show-overlay', { headline: headline });
             
                 this.App.setActiveFor(1100);
                 setTimeout(() => {

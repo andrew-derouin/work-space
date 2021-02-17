@@ -24,7 +24,6 @@ export default Vue.extend({
     data() {
         return {
             MainData: window.$App.MainData,
-            listIndex: 0,
             showWings: this.showWings,
             windowWidth: window.innerWidth
         }
@@ -35,7 +34,7 @@ export default Vue.extend({
             var lastIndex = this.MainData.dataList.length - 1;
             var newIndex = this.listIndex + change;
 
-            this.listIndex = newIndex;
+            window.$App.MainData.currentIndex = newIndex;
 
             newIndex = newIndex < 0 ? lastIndex : newIndex > lastIndex ? 0 : newIndex;
 
@@ -45,7 +44,7 @@ export default Vue.extend({
             setTimeout(() => {
                 el.classList.add('no-transition');
 
-                this.listIndex = newIndex;
+                window.$App.MainData.currentIndex = newIndex;
 
                 setTimeout(() => {
                     el.classList.remove('no-transition');  
@@ -78,6 +77,9 @@ export default Vue.extend({
         ut.addEvent('resize', () => { ut.setCssVar('--item-transform', `${this.transform}px`); }, 500);
     },
     computed: {
+        listIndex: function (): number {
+            return window.$App.MainData.currentIndex;
+        },
         transform: function (): string {
             var firstWingWidth = document.querySelector('.item-container-wing') as HTMLElement;
             var itemsOnScreen = this.windowWidth/this.itemWidth;
@@ -101,7 +103,6 @@ export default Vue.extend({
         mainItem: function (): any {
             return window.$App.MainData.dataList[this.listIndex];
         }
-
     }
 });
 </script>

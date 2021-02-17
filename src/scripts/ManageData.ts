@@ -4,10 +4,12 @@ import { items } from "../data/items";
 
 export class ManageData {
     dataList: Array<Item>;
-    pages: Array<Page>
+    pages: Array<Page>;
+    currentIndex: number;
 
     constructor() {
         this.dataList = this.assembleData();
+        this.currentIndex = 0;
         this.pages = [
             new Page('about', 'About Page'),
             new Page('maze', 'Mazes'), 

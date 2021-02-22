@@ -101,7 +101,7 @@ export default Vue.extend({
                     this.setColors();
                 }, 500);
             } else {
-                console.log('No designated page!')
+                console.log('No designated page!');
             }
         }, 100);
     },

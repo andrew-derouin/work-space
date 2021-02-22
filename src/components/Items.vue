@@ -25,7 +25,7 @@ export default Vue.extend({
         return {
             MainData: window.$App.MainData,
             showWings: this.showWings,
-            windowWidth: window.innerWidth
+            windowWidth: window.innerWidth,
         }
     },
     methods: {
@@ -61,6 +61,7 @@ export default Vue.extend({
         }
     },
     mounted() {
+
         ut.addEvent('change-item', () => {
             ut.setCssVar('--img-opacity', '0');
             setTimeout(() => {
@@ -73,8 +74,10 @@ export default Vue.extend({
         ut.addEvent('ArrowRight', () => { this.changeItem(1) }, 1100, 'slideshow');
         ut.addEvent('ArrowLeft', () => { this.changeItem(-1) }, 1100, 'slideshow');
 
-        ut.addEvent('resize', () => { this.windowWidth = window.innerWidth; }, 100);
-        ut.addEvent('resize', () => { ut.setCssVar('--item-transform', `${this.transform}px`); }, 500);
+        ut.addEvent('resize', () => { 
+            this.windowWidth = window.innerWidth;
+            ut.setCssVar('--item-transform', `${this.transform}px`);
+        }, 100);
     },
     computed: {
         listIndex: function (): number {
@@ -82,16 +85,10 @@ export default Vue.extend({
         },
         transform: function (): string {
             var firstWingWidth = document.querySelector('.item-container-wing') as HTMLElement;
-            var itemsOnScreen = this.windowWidth/this.itemWidth;
-            var goBack = Math.floor(itemsOnScreen);
-            var halfScreen = Math.round((this.itemWidth * itemsOnScreen)/2);
-            var widthAdjustment = halfScreen + firstWingWidth?.offsetWidth * window.$App.MainData.dataList.length;
+            var widthAdjustment = (firstWingWidth?.offsetWidth * window.$App.MainData.dataList.length);
+            var itemsOnScreen = (this.windowWidth/this.itemWidth)/2;
 
-            return (-((this.listIndex - goBack) * this.itemWidth) - widthAdjustment).toString();
-        },
-        itemWidth: function (): number {
-            var el = document.querySelector('.item-container-main') as HTMLElement;
-            return el ? el.offsetWidth : 0;
+            return (((this.listIndex - itemsOnScreen + 0.5) * -this.itemWidth) - widthAdjustment).toString();
         },
         coversEnabled: function(): boolean {
             var conversEnabled = false;
@@ -102,6 +99,11 @@ export default Vue.extend({
         },
         mainItem: function (): any {
             return window.$App.MainData.dataList[this.listIndex];
+        },
+        itemWidth: function (): number {
+            this.windowWidth;
+            var el = document.querySelector('.item-container-main') as HTMLElement;
+            return el ? el.offsetWidth : 0;
         }
     }
 });
